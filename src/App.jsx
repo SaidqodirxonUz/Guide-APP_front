@@ -1,35 +1,43 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Route, Routes } from "react-router-dom";
+import "./App.scss";
+import Login from "./pages/login/login";
+import Main from "./pages/main/main";
+import UsersPage from "./pages/users/Users";
+import UsersInfo from "./pages/userInfo/userInfo";
+import EditUser from "./pages/editUser/editUser";
+import Guide from "./pages/guides/Guide";
+import EditGuide from "./pages/editGuide/editGuide";
+import GuideInfo from "./pages/guideInfo/guideInfo";
+import CreateGuide from "./pages/createGuide/createGuide";
+import CreateUser from "./pages/createUser/createUser";
+import Notification from "./pages/Notification/notification";
+import EditMe from "./pages/editMe/editMe";
+import NotFound from "./pages/notFound/notFound";
+import Redirect from "./components/redirect";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Routes>
+        <Route path="/" element={<Main />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/users" element={<UsersPage />} />
+        <Route path="/users/:id" element={<UsersInfo />} />
+        <Route path="/users/me" element={<EditMe />} />
+        <Route path="/users/add" element={<CreateUser />} />
+        <Route path="/users/edit/:id" element={<EditUser />} />
+
+        <Route path="/guide" element={<Guide />} />
+        <Route path="/guide/edit/:id" element={<EditGuide />} />
+        <Route path="/guide/:id" element={<GuideInfo />} />
+        <Route path="/guide/add" element={<CreateGuide />} />
+
+        <Route path="/notification" element={<Notification />} />
+        <Route path="/*" element={<NotFound />} />
+        <Route path="*" element={<Redirect />} />
+      </Routes>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
